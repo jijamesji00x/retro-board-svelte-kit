@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PNPM_HOME=~/.local/share/pnpm
+        - BUILDPLATFORM=arm64
+    env_file:
+      - .env
+
+    # command:
+    #   - --encryptionEnv
+    #   - ENCRYPTION # optional
+    # environment:
+    #   ENCRYPTION: $(openssl rand -hex 16) # optional (Ensure this is a 32-character long encryption key https://pocketbase.io/docs/going-to-production/#enable-settings-encryption)
+    ports:
+      - '5173:5173'
+    # entrypoint: ['sleep', '99999']
